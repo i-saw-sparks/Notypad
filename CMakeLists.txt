@@ -39,6 +39,7 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    icons.qrc
   )
 endif()
 
