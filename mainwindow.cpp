@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <QFile>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QTextStream>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,23 +27,36 @@ void MainWindow::on_actionNew_File_triggered()
 
 void MainWindow::on_actionSave_File_triggered()
 {
-    QString fileName;
     if(activeBuffer.isEmpty()){
-        fileName = QFileDialog::getSaveFileName(this, "Save", tr("New File"),tr("*.txt"));
-
-        activeBuffer = fileName;
-    }else{
-        fileName = activeBuffer;
+        activeBuffer = QFileDialog::getSaveFileName(this, "Save", tr("New File"),tr("*.txt"));
     }
 
-    QFile file(fileName);
+    QFile file(activeBuffer);
     if(!file.open(QIODevice::WriteOnly|QFile::Text)){
         QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
         return;
     }
-    setWindowTitle(fileName);
+
+    setWindowTitle(activeBuffer);
     QTextStream out(&file);
-    QString text = ui ->plainTextEdit->toPlainText();
-    out<<text;
+    out<<ui ->plainTextEdit->toPlainText();
+    file.close();
+}
+
+void MainWindow::on_actionOpen_File_triggered()
+{
+    activeBuffer.clear();
+    activeBuffer = QFileDialog::getOpenFileName(this, "Open");
+    QFile file(activeBuffer);
+
+    if(!file.open(QIODevice::ReadOnly|QFile::Text)){
+        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
+        return;
+    }
+
+    setWindowTitle(activeBuffer);
+    QTextStream in(&file);
+    QString str = in.readAll();
+    ui->plainTextEdit->setPlainText(str);
     file.close();
 }
