@@ -23,6 +23,7 @@ void MainWindow::on_actionNew_File_triggered()
 {
     activeBuffer.clear();
     ui->plainTextEdit->setPlainText(QString());
+    setWindowTitle("Notypad");
 }
 
 void MainWindow::on_actionSave_File_triggered()
