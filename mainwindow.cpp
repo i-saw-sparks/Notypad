@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setCentralWidget(ui->plainTextEdit);
-
 }
 
 
@@ -24,6 +23,7 @@ void MainWindow::on_actionNew_File_triggered()
     activeBuffer.clear();
     ui->plainTextEdit->setPlainText(QString());
     setWindowTitle("Notypad");
+    statusBar()->showMessage(tr("buffer cleared"), 2000);
 }
 
 void MainWindow::on_actionSave_File_triggered()
@@ -56,6 +56,7 @@ bool MainWindow::save_file(QString &currentFile){
     QTextStream out(&file);
     out<<ui ->plainTextEdit->toPlainText();
     file.close();
+    statusBar()->showMessage(tr("file saved"), 2000);
     return true;
 }
 
@@ -75,6 +76,7 @@ void MainWindow::on_actionOpen_File_triggered()
     QString str = in.readAll();
     ui->plainTextEdit->setPlainText(str);
     file.close();
+    statusBar()->showMessage(tr("file opened"), 2000);
 }
 
 
