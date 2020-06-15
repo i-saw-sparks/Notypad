@@ -32,16 +32,31 @@ void MainWindow::on_actionSave_File_triggered()
         activeBuffer = QFileDialog::getSaveFileName(this, "Save", tr("New File"),tr("*.txt"));
     }
 
-    QFile file(activeBuffer);
+    save_file(activeBuffer);
+}
+
+void MainWindow::on_actionSaveAs_triggered()
+{
+    QString fileName;
+    fileName = QFileDialog::getSaveFileName(this, "Save as", tr("New File"), tr("*.txt"));
+
+    if(save_file(fileName)){
+        activeBuffer = fileName;
+    }
+}
+
+bool MainWindow::save_file(QString &currentFile){
+    QFile file(currentFile);
     if(!file.open(QIODevice::WriteOnly|QFile::Text)){
         QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
-        return;
+        return false;
     }
 
-    setWindowTitle(activeBuffer);
+    setWindowTitle(currentFile);
     QTextStream out(&file);
     out<<ui ->plainTextEdit->toPlainText();
     file.close();
+    return true;
 }
 
 void MainWindow::on_actionOpen_File_triggered()
@@ -61,3 +76,5 @@ void MainWindow::on_actionOpen_File_triggered()
     ui->plainTextEdit->setPlainText(str);
     file.close();
 }
+
+

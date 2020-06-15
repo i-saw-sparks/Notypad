@@ -27,8 +27,12 @@ private slots:
 
     void on_actionOpen_File_triggered();
 
+    void on_actionSaveAs_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString activeBuffer;
+
+    bool save_file(QString &currentFile);
 };
 #endif // MAINWINDOW_H

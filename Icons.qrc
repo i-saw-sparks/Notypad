@@ -3,5 +3,8 @@
         <file>Resources/File_Icon.png</file>
         <file>Resources/Open_file_Icon.png</file>
         <file>Resources/Save_Icon.png</file>
+        <file>Resources/Settings_Icons.png</file>
+        <file>Resources/Save_as_Icon.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>
