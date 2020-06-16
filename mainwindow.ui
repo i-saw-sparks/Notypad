@@ -429,8 +429,8 @@
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>226</red>
-            <green>226</green>
+            <red>205</red>
+            <green>219</green>
             <blue>226</blue>
            </color>
           </brush>
@@ -445,10 +445,10 @@
           </brush>
          </colorrole>
          <colorrole role="PlaceholderText">
-          <brush brushstyle="NoBrush">
+          <brush brushstyle="SolidPattern">
            <color alpha="128">
-            <red>226</red>
-            <green>226</green>
+            <red>205</red>
+            <green>219</green>
             <blue>226</blue>
            </color>
           </brush>
@@ -485,8 +485,8 @@
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>226</red>
-            <green>226</green>
+            <red>205</red>
+            <green>219</green>
             <blue>226</blue>
            </color>
           </brush>
@@ -501,10 +501,10 @@
           </brush>
          </colorrole>
          <colorrole role="PlaceholderText">
-          <brush brushstyle="NoBrush">
+          <brush brushstyle="SolidPattern">
            <color alpha="128">
-            <red>226</red>
-            <green>226</green>
+            <red>205</red>
+            <green>219</green>
             <blue>226</blue>
            </color>
           </brush>
@@ -557,7 +557,7 @@
           </brush>
          </colorrole>
          <colorrole role="PlaceholderText">
-          <brush brushstyle="NoBrush">
+          <brush brushstyle="SolidPattern">
            <color alpha="128">
             <red>226</red>
             <green>226</green>
@@ -570,6 +570,7 @@
       </property>
       <property name="font">
        <font>
+        <family>Consolas</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -728,6 +729,15 @@
          </color>
         </brush>
        </colorrole>
+       <colorrole role="Highlight">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>224</red>
+          <green>243</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -874,6 +884,15 @@
          </color>
         </brush>
        </colorrole>
+       <colorrole role="Highlight">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>224</red>
+          <green>243</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -1017,6 +1036,15 @@
           <red>0</red>
           <green>0</green>
           <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Highlight">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>51</red>
+          <green>153</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>

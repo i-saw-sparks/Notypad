@@ -5,18 +5,26 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    ,settWin(new settWindow)
 {
+
+    this->setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     this->setCentralWidget(ui->plainTextEdit);
+    settWin->resize(300,300);
+    QObject::connect(settWin, SIGNAL(font_changed(const QFont&)), this, SLOT(modify_font(const QFont&)));
 }
-
-
 
 MainWindow::~MainWindow()
 {
+    delete settWin;
     delete ui;
 }
 
+
+void MainWindow::modify_font(const QFont &f){
+    ui->plainTextEdit->setFont(f);
+}
 
 void MainWindow::on_actionNew_File_triggered()
 {
@@ -38,6 +46,7 @@ void MainWindow::on_actionSave_File_triggered()
 void MainWindow::on_actionSaveAs_triggered()
 {
     QString fileName;
+
     fileName = QFileDialog::getSaveFileName(this, "Save as", tr("New File"), tr("*.txt"));
 
     if(save_file(fileName)){
@@ -80,3 +89,8 @@ void MainWindow::on_actionOpen_File_triggered()
 }
 
 
+
+void MainWindow::on_actionSettings_triggered()
+{
+    settWin->show();
+}

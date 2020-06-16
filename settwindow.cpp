@@ -1,8 +1,8 @@
 #include "settwindow.h"
 #include "ui_settwindow.h"
 
-settWindow::settWindow(QWidget *parent) :
-    QWidget(parent),
+settWindow::settWindow() :
+    QWidget(0),
     ui(new Ui::settWindow)
 {
     ui->setupUi(this);
@@ -11,4 +11,9 @@ settWindow::settWindow(QWidget *parent) :
 settWindow::~settWindow()
 {
     delete ui;
+}
+
+void settWindow::on_fontComboBox_currentFontChanged(const QFont &f)
+{
+    emit font_changed(f);
 }

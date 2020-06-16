@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -32,6 +32,10 @@ if(ANDROID)
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    settwindow.cpp
+    settwindow.h
+    settwindow.ui
+    icons.qrc
   )
 else()
   add_executable(Notypad
@@ -39,6 +43,9 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    settwindow.cpp
+    settwindow.h
+    settwindow.ui
     icons.qrc
   )
 endif()

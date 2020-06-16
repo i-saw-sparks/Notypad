@@ -6,7 +6,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
-#include <memory>
+#include <QSharedData>
+#include <settwindow.h>
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,9 +32,16 @@ private slots:
 
     void on_actionSaveAs_triggered();
 
+    void on_actionSettings_triggered();
+
+public slots:
+    void modify_font(const QFont&);
+
 private:
     Ui::MainWindow *ui;
     QString activeBuffer;
+    settWindow *settWin;
+
 
     bool save_file(QString &currentFile);
 };
