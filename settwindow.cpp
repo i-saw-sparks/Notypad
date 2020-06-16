@@ -17,3 +17,8 @@ void settWindow::on_fontComboBox_currentFontChanged(const QFont &f)
 {
     emit font_changed(f);
 }
+
+void settWindow::on_pushButton_clicked()
+{
+    this->hide();
+}

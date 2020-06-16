@@ -24,6 +24,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::modify_font(const QFont &f){
     ui->plainTextEdit->setFont(f);
+    statusBar()->showMessage(tr("Font modified"), 2000);
+
 }
 
 void MainWindow::on_actionNew_File_triggered()

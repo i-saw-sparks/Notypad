@@ -23,6 +23,8 @@ signals:
 private slots:
     void on_fontComboBox_currentFontChanged(const QFont &f);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::settWindow *ui;
 };
