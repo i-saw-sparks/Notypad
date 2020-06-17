@@ -4,6 +4,12 @@
 #include <QWidget>
 #include <QFont>
 #include <QPlainTextEdit>
+#include <QJsonDocument>
+#include <QFile>
+#include <QMessageBox>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 namespace Ui {
 class settWindow;
@@ -30,6 +36,8 @@ private slots:
 
 private:
     Ui::settWindow *ui;
+    QString prefsDoc;
+    bool loadPrefs();
 };
 
 #endif // SETTWINDOW_H
