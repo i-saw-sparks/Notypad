@@ -63,6 +63,7 @@ void settWindow::on_spinBox_valueChanged(int arg1)
 
 void settWindow::on_pushButton_clicked()
 {
+    /*
     QFile prefs(prefsDoc);
     if(!prefs.open(QIODevice::WriteOnly | QIODevice::Text)){
         QMessageBox::warning(this, "Error", "Cannot open prefs file: " + prefs.errorString());
@@ -75,9 +76,11 @@ void settWindow::on_pushButton_clicked()
     prefsObj.insert("font", "ajio");
     doc.setObject(prefsObj);
     prefs.write(doc.toJson());
+    prefs.close();
+    */
     //emit funcion para modificar fuente y tamaño
     this->hide();
-    prefs.close();
+
 }
 
 
