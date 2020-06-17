@@ -12,8 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setCentralWidget(ui->plainTextEdit);
     settWin->resize(300,300);
-    QObject::connect(settWin, SIGNAL(font_changed(const QFont&)), this, SLOT(modify_font(const QFont&)));
+    QObject::connect(settWin, SIGNAL(family_changed(const QString&)), this, SLOT(modify_font(const QString&)));
     QObject::connect(settWin, SIGNAL(font_size_changed(int)), this, SLOT(modify_font(int)));
+    QObject::connect(settWin, SIGNAL(font_changed(const QFont&)), this, SLOT(modify_font(const QFont&)));
 }
 
 MainWindow::~MainWindow()
@@ -24,7 +25,12 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::modify_font(const QFont &f){
-    QFont fn = f;
+    ui->plainTextEdit->setFont(f);
+    statusBar()->showMessage(tr("Font modified"), 2000);
+}
+
+void MainWindow::modify_font(const QString &f){
+    QFont fn(f);
     fn.setPointSize(ui->plainTextEdit->font().pointSize());
     ui->plainTextEdit->setFont(fn);
     statusBar()->showMessage(tr("Font modified"), 2000);
