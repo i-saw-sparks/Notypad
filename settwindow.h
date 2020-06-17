@@ -19,11 +19,14 @@ public:
 
 signals:
     void font_changed(const QFont&);
+    void font_size_changed(int);
 
 private slots:
     void on_fontComboBox_currentFontChanged(const QFont &f);
 
     void on_pushButton_clicked();
+
+    void on_spinBox_valueChanged(int arg1);
 
 private:
     Ui::settWindow *ui;

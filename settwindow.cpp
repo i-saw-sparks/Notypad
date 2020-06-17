@@ -22,3 +22,8 @@ void settWindow::on_pushButton_clicked()
 {
     this->hide();
 }
+
+void settWindow::on_spinBox_valueChanged(int arg1)
+{
+    emit font_size_changed(arg1);
+}

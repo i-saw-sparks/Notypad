@@ -36,6 +36,8 @@ private slots:
 
 public slots:
     void modify_font(const QFont&);
+    void modify_font(int);
+
 
 private:
     Ui::MainWindow *ui;
