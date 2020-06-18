@@ -39,6 +39,7 @@ private slots:
 private:
     Ui::settWindow *ui;
     QString prefsDoc;
+    bool apply_prefs_settings(QFile&);
 
 };
 

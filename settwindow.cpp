@@ -20,8 +20,6 @@ bool settWindow::loadPrefs(){
         return false;
     }
     QString fileCont = prefs.readAll();
-    QJsonParseError JsonParseError;
-
     QJsonDocument doc;
     QJsonObject obj;
 
@@ -33,12 +31,17 @@ bool settWindow::loadPrefs(){
     }
     prefs.close();
 
+    return apply_prefs_settings(prefs);
+}
+
+bool settWindow::apply_prefs_settings(QFile &prefs){
     if(!prefs.open(QIODevice::ReadOnly | QIODevice::Text)){
         return false;
     }
 
-    doc = QJsonDocument::fromJson(prefs.readAll(), &JsonParseError);
-    obj = doc.object();
+    QJsonParseError JsonParseError;
+    QJsonDocument doc = QJsonDocument::fromJson(prefs.readAll(), &JsonParseError);
+    QJsonObject obj = doc.object();
     QFont f(obj.value("font").toString());
     f.setPointSize(obj.value("pSize").toInt());
     ui->fontComboBox->setCurrentFont(f);
@@ -60,22 +63,23 @@ void settWindow::on_spinBox_valueChanged(int arg1)
 
 void settWindow::on_pushButton_clicked()
 {
-    /*
+
     QFile prefs(prefsDoc);
-    if(!prefs.open(QIODevice::WriteOnly | QIODevice::Text)){
+    if(!prefs.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
         QMessageBox::warning(this, "Error", "Cannot open prefs file: " + prefs.errorString());
     }
 
-    QJsonParseError JsonParseError;
-    QJsonDocument doc = QJsonDocument::fromJson(prefs.readAll(), &JsonParseError);
-
-    QJsonObject prefsObj = doc.object();
-    prefsObj.insert("font", "ajio");
+    QJsonDocument doc;
+    QJsonObject prefsObj;
+    prefsObj.insert("font", ui->fontComboBox->currentFont().family());
+    prefsObj.insert("pSize",ui->spinBox->value());
     doc.setObject(prefsObj);
     prefs.write(doc.toJson());
     prefs.close();
-    */
-    //emit funcion para modificar fuente y tamaño
+
+    QFont f(ui->fontComboBox->currentFont().family(), ui->spinBox->value());
+    emit font_changed(f);
+
     this->hide();
 
 }
