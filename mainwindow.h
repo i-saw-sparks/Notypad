@@ -35,7 +35,7 @@ private slots:
     void on_actionSettings_triggered();
 
 public slots:
-    void modify_font(const QFont&);
+    void modify_font(const QFont&, bool);
     void modify_font(const QString&);
     void modify_font(int);
 

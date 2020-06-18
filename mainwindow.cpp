@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     ,settWin(new settWindow)
 {
-    QObject::connect(settWin, SIGNAL(font_changed(const QFont&)), this, SLOT(modify_font(const QFont&)));
+    QObject::connect(settWin, SIGNAL(font_changed(const QFont&, bool)), this, SLOT(modify_font(const QFont&, bool)));
     QObject::connect(settWin, SIGNAL(family_changed(const QString&)), this, SLOT(modify_font(const QString&)));
     QObject::connect(settWin, SIGNAL(font_size_changed(int)), this, SLOT(modify_font(int)));
 
@@ -31,23 +31,22 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::modify_font(const QFont &f){
+void MainWindow::modify_font(const QFont &f, bool isMod){
     ui->plainTextEdit->setFont(f);
-    statusBar()->showMessage(tr("Font modified"), 2000);
+    if(isMod)
+        statusBar()->showMessage(tr("Font modified"), 2000);
 }
 
 void MainWindow::modify_font(const QString &f){
     QFont fn(f);
     fn.setPointSize(ui->plainTextEdit->font().pointSize());
     ui->plainTextEdit->setFont(fn);
-    statusBar()->showMessage(tr("Font modified"), 2000);
 }
 
 void MainWindow::modify_font(int size){
     QFont f = ui->plainTextEdit->font();
     f.setPointSize(size);
     ui->plainTextEdit->setFont(f);
-    statusBar()->showMessage(tr("Font modified"), 2000);
 }
 
 void MainWindow::on_actionNew_File_triggered()

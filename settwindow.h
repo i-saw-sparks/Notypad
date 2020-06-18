@@ -25,21 +25,24 @@ public:
     bool loadPrefs();
 
 signals:
-    void font_changed(const QFont&);
+    void font_changed(const QFont&, bool);
     void family_changed(const QString&);
     void font_size_changed(int);
 
 private slots:
     void on_fontComboBox_currentFontChanged(const QFont &f);
 
-    void on_pushButton_clicked();
-
     void on_spinBox_valueChanged(int arg1);
+
+    void on_saveButton_clicked();
+
+    void on_cancelButton_clicked();
 
 private:
     Ui::settWindow *ui;
     QString prefsDoc;
     bool apply_prefs_settings(QFile&);
+    void closeEvent (QCloseEvent *event);
 
 };
 

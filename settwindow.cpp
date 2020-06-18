@@ -47,7 +47,7 @@ bool settWindow::apply_prefs_settings(QFile &prefs){
     ui->fontComboBox->setCurrentFont(f);
     ui->spinBox->setValue(obj.value("pSize").toInt());
     prefs.close();
-    emit font_changed(f);
+    emit font_changed(f, false);
     return true;
 }
 
@@ -61,9 +61,8 @@ void settWindow::on_spinBox_valueChanged(int arg1)
     emit font_size_changed(arg1);
 }
 
-void settWindow::on_pushButton_clicked()
+void settWindow::on_saveButton_clicked()
 {
-
     QFile prefs(prefsDoc);
     if(!prefs.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
         QMessageBox::warning(this, "Error", "Cannot open prefs file: " + prefs.errorString());
@@ -78,10 +77,20 @@ void settWindow::on_pushButton_clicked()
     prefs.close();
 
     QFont f(ui->fontComboBox->currentFont().family(), ui->spinBox->value());
-    emit font_changed(f);
+    emit font_changed(f, true);
 
     this->hide();
-
 }
 
+void settWindow::on_cancelButton_clicked()
+{
+    QFile f(prefsDoc);
+    apply_prefs_settings(f);
+    this->hide();
+}
 
+void settWindow::closeEvent (QCloseEvent *event){
+    QFile f(prefsDoc);
+    apply_prefs_settings(f);
+    this->hide();
+}
