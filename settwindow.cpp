@@ -7,10 +7,6 @@ settWindow::settWindow() :
     prefsDoc("prefs.json")
 {
     ui->setupUi(this);
-
-    if(!loadPrefs()){
-        QMessageBox::warning(this, "Error", "Cannot load preferences");
-    }
 }
 
 settWindow::~settWindow()
@@ -43,7 +39,8 @@ bool settWindow::loadPrefs(){
 
     doc = QJsonDocument::fromJson(prefs.readAll(), &JsonParseError);
     obj = doc.object();
-    QFont f(obj.value("font").toString(),obj.value("pSize").toInt());
+    QFont f(obj.value("font").toString());
+    f.setPointSize(obj.value("pSize").toInt());
     ui->fontComboBox->setCurrentFont(f);
     ui->spinBox->setValue(obj.value("pSize").toInt());
     prefs.close();

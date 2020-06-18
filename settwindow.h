@@ -22,6 +22,7 @@ class settWindow : public QWidget
 public:
     explicit settWindow();
     ~settWindow();
+    bool loadPrefs();
 
 signals:
     void font_changed(const QFont&);
@@ -35,12 +36,10 @@ private slots:
 
     void on_spinBox_valueChanged(int arg1);
 
-
-
 private:
     Ui::settWindow *ui;
     QString prefsDoc;
-    bool loadPrefs();
+
 };
 
 #endif // SETTWINDOW_H

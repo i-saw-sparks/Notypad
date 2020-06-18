@@ -7,14 +7,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     ,settWin(new settWindow)
 {
+    QObject::connect(settWin, SIGNAL(font_changed(const QFont&)), this, SLOT(modify_font(const QFont&)));
+    QObject::connect(settWin, SIGNAL(family_changed(const QString&)), this, SLOT(modify_font(const QString&)));
+    QObject::connect(settWin, SIGNAL(font_size_changed(int)), this, SLOT(modify_font(int)));
 
     this->setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     this->setCentralWidget(ui->plainTextEdit);
+
+    if(!(settWin->loadPrefs())){
+        QMessageBox::warning(this, "Error", "Cannot load preferences");
+    }else{
+        statusBar()->showMessage(tr("Preferences loaded"), 2000);
+    }
+
     settWin->resize(300,300);
-    QObject::connect(settWin, SIGNAL(family_changed(const QString&)), this, SLOT(modify_font(const QString&)));
-    QObject::connect(settWin, SIGNAL(font_size_changed(int)), this, SLOT(modify_font(int)));
-    QObject::connect(settWin, SIGNAL(font_changed(const QFont&)), this, SLOT(modify_font(const QFont&)));
 }
 
 MainWindow::~MainWindow()
