@@ -8,6 +8,8 @@
 #include <QTextStream>
 #include <QSharedData>
 #include <settwindow.h>
+#include <QLabel>
+
 
 
 

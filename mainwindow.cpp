@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
         statusBar()->showMessage(tr("Preferences loaded"), 2000);
     }
 
-    settWin->resize(300,300);
 }
 
 MainWindow::~MainWindow()
@@ -88,7 +87,10 @@ bool MainWindow::save_file(QString &currentFile){
     QTextStream out(&file);
     out<<ui ->plainTextEdit->toPlainText();
     file.close();
-    statusBar()->showMessage(tr("file saved"), 2000);
+    QString mess ("file saved (");
+    mess.append(QString::number(ui ->plainTextEdit->toPlainText().size()));
+    mess.append("B)");
+    statusBar()->showMessage(mess, 2000);
     return true;
 }
 
